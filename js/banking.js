@@ -11,25 +11,17 @@ function getInputValue(inputId) {
     inputField.value = ''
     return depositAmount;
 }
-function updateTotalField(totalFieldId, depositAmount) {
-    const depositTotal = document.getElementById(totalFieldId);
-    const depositTotalText = depositTotal.innerText;
-    const depositTotalAmount = parseFloat(depositTotalText)
+function updateTotalField(totalFieldId, amount) {
+    const totalField = document.getElementById(totalFieldId);
+    const totalFieldText = totalField.innerText;
+    const totalFieldAmount = parseFloat(totalFieldText)
 
 
-    depositTotal.innerText = depositTotalAmount + depositAmount
+    totalField.innerText = totalFieldAmount + amount
 }
 document.getElementById('deposit-btn').addEventListener('click', function () {
-
     const depositAmount = getInputValue('deposit-input');
-
-    // const depositTotal = document.getElementById('deposited-total');
-    // const depositTotalText = depositTotal.innerText;
-    // const depositTotalAmount = parseFloat(depositTotalText)
-    // depositTotal.innerText = depositTotalAmount + depositAmount
-
     updateTotalField('deposited-total', depositAmount);
-
     const balanceTotal = document.getElementById('balance-total')
     const balanceTotalText = balanceTotal.innerText
     const previusBalanceTotal = parseFloat(balanceTotalText)
@@ -37,18 +29,10 @@ document.getElementById('deposit-btn').addEventListener('click', function () {
 });
 
 document.getElementById('withdraw-btn').addEventListener('click', function () {
-    // const withdrawInput = document.getElementById('withdraw-input')
-    // const withdrawAmountText = withdrawInput.value;
-    // const withdrawAmount = parseFloat(withdrawAmountText);
     const withdrawAmount = getInputValue('withdraw-input')
-    // const withdrawTotal = document.getElementById('withdraw-total');
-    // const previousWithdrawTotalText = withdrawTotal.innerText;
-    // const previousWithdrawTotal = parseFloat(previousWithdrawTotalText)
     updateTotalField('withdraw-total', withdrawAmount)
-    withdrawTotal.innerText = previousWithdrawTotal + withdrawAmount
     const balanceTotal = document.getElementById('balance-total')
     const balanceTotalText = balanceTotal.innerText;
     const previusBalanceTotal = parseFloat(balanceTotalText)
     balanceTotal.innerText = previusBalanceTotal - withdrawAmount
-    withdrawInput.value = '';
 })
